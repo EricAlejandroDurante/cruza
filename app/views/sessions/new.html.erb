@@ -1,0 +1,23 @@
+<div style="width: auto; margin-left: auto; margin-right: auto">
+<%= form_with url: sessions_path do |form|%>
+    <% if @sign_in_error %>
+      <div><%= "No se ha podido logear al sistema" %></div>
+    <% end %>
+      <div class="mb-4">
+        <%= form.label :email, class: "block text-md font-light mb-2" %>
+        <%= form.email_field :email, required: true, value: params[:email], class: "w-full bg-drabya-gray border-gray-500 appearance-none border p-4 font-light leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+      <div class="mb-4">
+        <%= form.label :password, class: "block text-md font-light mb-2" %>
+        <%= form.password_field :password, required: true, class: "w-full bg-drabya-gray border-gray-500 appearance-none border p-4 font-light leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div class="flex items-center justify-between mb-5">
+        <%= form.submit "Log in", class:"bg-indigo-600 hover:bg-blue-700 text-white font-light py-2 px-6 rounded focus:outline-none focus:shadow-outline" %>
+        <a class="inline-block align-baseline font-light text-sm text-indigo-600 hover:text-indigo-500" href="#">
+          Forgot Password?
+        </a>
+      </div>
+  <p class="text-center text-md font-light">Don't have an account? <a class="font-light text-md text-indigo-600">Create</a></p>
+<% end %>
+</div>

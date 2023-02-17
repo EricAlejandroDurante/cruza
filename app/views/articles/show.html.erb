@@ -1,0 +1,26 @@
+<div><h1><%= @article.title %></h1><br>
+<p><%= @article.body %></p>
+
+<ul>
+  <li><%= link_to "Edit article", edit_article_path %></li>
+  <li><%= link_to "Back", articles_path %></li>
+  <li data-controller="dialog">
+      <button data-action="dialog#superShow">Destroy</button>
+      <dialog data-dialog-target="dialog">Estas seguro de realizar esta acción?<%= button_to "Destroy", article_path(@article), method: :delete %><button data-action="dialog#close">Cerrar</button></dialog>
+  </li>
+</ul>
+</div>
+<div>
+<h2>Comments</h2>
+<% @article.comments.each do |comment| %>
+  <%= turbo_frame_tag comment do %>
+    <%= render 'comments/comment', comment: comment %>
+  <% end %>
+<% end %>
+</div>
+<div>
+<h2>Add a comment:</h2>
+<%= form_with model: [ @article, @article.comments.build ] do |form| %>
+  <%= render 'comments/form'%>
+<% end %>
+</div>
